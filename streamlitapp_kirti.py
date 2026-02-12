@@ -103,7 +103,46 @@ else:
 # --- Data Preprocessing ---
 st.header('Data Preprocessing')
 if st.session_state['original_df'] is not None:
-    df = st.session_state['original_df'].copy()
+    data = st.session_state['original_df'].copy()
+    X = data.drop('Class', axis=1)
+    y = data['Class']
+    X_0= data[data['Class']==0].iloc[:492]
+
+    X_0 = X_0.drop('Class', axis=1)
+
+    y_0 = y[data['Class']==0].iloc[:492]
+    X_1= data[data['Class']==1]
+    X_1 = X_1.drop('Class', axis=1)
+
+    y_1= y[data['Class']==1]
+    # TODO: Train-test split
+    X_train_0, X_test_0, y_train_0, y_test_0 = train_test_split(X_0, y_0, test_size=0.2, random_state=42)
+    X_train_1, X_test_1, y_train_1, y_test_1 = train_test_split(X_1, y_1, test_size=0.2, random_state=42)
+    X_train = pd.merge(X_train_0,X_train_1,how='outer')
+
+    X_test = pd.merge(X_test_0,X_test_1,how='outer')
+
+    y_train = pd.merge(y_train_0,y_train_1,how='outer')
+
+    y_test = pd.merge(y_test_0,y_test_1,how='outer')
+
+    df_train = pd.concat([X_train , y_train],axis=1)
+    df_test = pd.concat([X_test ,y_test],axis=1)
+    df = pd.concat([df_train,df_test],axis=0)
+    # TODO: Feature scaling
+    #scaler = StandardScaler()
+    #X_train_scaled = scaler.fit_transform(X_train)
+    #X_test_scaled = scaler.transform(X_test)
+    #print(len(X_train_scaled))
+    #print(len(y_train))
+    # Fill these after preprocessing
+    #train_samples = X_train_scaled.shape[0]       # Number of training samples
+    #test_samples = X_test_scaled.shape[0]       # Number of test samples
+    #train_test_ratio = 0.8  # e.g., 0.8 for 80-20 split
+
+    #print(f"Train samples: {train_samples}")
+    #print(f"Test samples: {test_samples}")
+    #print(f"Split ratio: {train_test_ratio:.1%}")
 
 
 
@@ -111,7 +150,7 @@ if st.session_state['original_df'] is not None:
     categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
     numerical_cols = df.select_dtypes(include=['number']).columns.tolist()
 
-    # Remove 'Class' from categorical_cols if it's there (after conversion it's numerical)
+    # Remove 'y' from categorical_cols if it's there (after conversion it's numerical)
     if 'Class' in categorical_cols:
         categorical_cols.remove('Class')
 
@@ -183,6 +222,8 @@ if st.session_state['df_processed'] is not None:
         X = df_processed.drop('Class', axis=1)
         y = df_processed['Class']
         st.write("Features (X) and target (y) defined.")
+
+
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
         st.write("Data split into training and testing sets.")
