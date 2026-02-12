@@ -371,7 +371,3 @@ if st.sidebar.button('Clear Results and Reset'):
         del st.session_state[key]
     st.rerun()
 
-!pip install streamlit
-
-!streamlit run /usr/local/lib/python3.12/dist-packages/colab_kernel_launcher.py [ARGUMENTS]
-
