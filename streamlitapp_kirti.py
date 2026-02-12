@@ -283,7 +283,7 @@ if st.session_state['X_train'] is not None and st.session_state['y_train'] is no
                 model = RandomForestClassifier(n_estimators=10, random_state=42)
                 model.fit(X_train, y_train)
             elif st.session_state['selected_model'] == 'XGBoost Model':
-                model = xgb.XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss', objective='binary:logistic')
+                model = xgb.XGBClassifier(random_state=42,  eval_metric='logloss', objective='binary:logistic')
 
             if model:
                 model.fit(X_train, y_train)
@@ -370,3 +370,8 @@ if st.sidebar.button('Clear Results and Reset'):
     for key in st.session_state.keys():
         del st.session_state[key]
     st.rerun()
+
+!pip install streamlit
+
+!streamlit run /usr/local/lib/python3.12/dist-packages/colab_kernel_launcher.py [ARGUMENTS]
+
