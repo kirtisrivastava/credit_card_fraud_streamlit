@@ -240,7 +240,7 @@ if st.session_state['df_processed'] is not None:
         st.session_state['y_test'] = y_test
 
     else:
-        st.error("Target variable 'y' not found in the processed DataFrame. Cannot split data.")
+        st.error("Target variable 'Class' not found in the processed DataFrame. Cannot split data.")
 
 # --- Model Selection ---
 st.sidebar.header('Model Selection')
@@ -315,6 +315,8 @@ st.header('Model Evaluation')
 if st.session_state['model'] is not None and st.session_state['y_test'] is not None and st.session_state['y_pred'] is not None:
     y_test = st.session_state['y_test']
     y_pred = st.session_state['y_pred']
+    st.write(f"y_test shape: {y_test.shape}")
+    st.write(f"y_pred shape: {y_pred.shape}")
 
     if y_test.empty or len(y_pred) == 0:
         st.warning("y_test or y_pred is empty. Cannot evaluate an empty set.")
