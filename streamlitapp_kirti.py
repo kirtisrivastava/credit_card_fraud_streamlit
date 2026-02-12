@@ -28,7 +28,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 # 1. Set the Streamlit page configuration
 st.set_page_config(
-    page_title='Direct Marketing Campaigns on Portuguese Banking Data',
+    page_title='Credit card fraud detection analysis',
     layout='wide'
 )
 
