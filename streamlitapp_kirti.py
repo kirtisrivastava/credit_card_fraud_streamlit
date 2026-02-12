@@ -105,19 +105,14 @@ st.header('Data Preprocessing')
 if st.session_state['original_df'] is not None:
     df = st.session_state['original_df'].copy()
 
-    # Convert target variable 'y' from 'yes'/'no' to 1/0
-    if 'y' in df.columns:
-        df['y'] = df['y'].map({'yes': 1, 'no': 0})
-        st.write("Target variable 'y' converted to numerical (1/0).")
-    else:
-        st.warning("Target variable 'y' not found. Ensure the dataset contains a 'y' column.")
+
 
     # Identify categorical and numerical columns
     categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
     numerical_cols = df.select_dtypes(include=['number']).columns.tolist()
 
     # Remove 'y' from categorical_cols if it's there (after conversion it's numerical)
-    if 'y' in categorical_cols:
+    if 'Class' in categorical_cols:
         categorical_cols.remove('y')
 
     # Apply one-hot encoding to categorical columns
