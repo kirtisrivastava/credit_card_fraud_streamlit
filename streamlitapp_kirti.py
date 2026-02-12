@@ -334,5 +334,3 @@ Original file is located at
 #     for key in st.session_state.keys():
 #         del st.session_state[key]
 #     st.rerun()
-
-!streamlit run app.py
