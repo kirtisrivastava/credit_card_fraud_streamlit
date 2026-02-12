@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1FuPbiOuK2J7eUi-67Kp9zybxE4rCxWvB
 """
 
-pip install streamlit pandas numpy joblib scikit-learn matplotlib seaborn
-
 # Commented out IPython magic to ensure Python compatibility.
 # %%writefile app.py
 # import os;
