@@ -111,9 +111,9 @@ if st.session_state['original_df'] is not None:
     categorical_cols = df.select_dtypes(include=['object']).columns.tolist()
     numerical_cols = df.select_dtypes(include=['number']).columns.tolist()
 
-    # Remove 'y' from categorical_cols if it's there (after conversion it's numerical)
+    # Remove 'Class' from categorical_cols if it's there (after conversion it's numerical)
     if 'Class' in categorical_cols:
-        categorical_cols.remove('y')
+        categorical_cols.remove('Class')
 
     # Apply one-hot encoding to categorical columns
     if categorical_cols:
@@ -179,9 +179,9 @@ st.header('Data Splitting')
 if st.session_state['df_processed'] is not None:
     df_processed = st.session_state['df_processed']
 
-    if 'y' in df_processed.columns:
-        X = df_processed.drop('y', axis=1)
-        y = df_processed['y']
+    if 'Class' in df_processed.columns:
+        X = df_processed.drop('Class', axis=1)
+        y = df_processed['Class']
         st.write("Features (X) and target (y) defined.")
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
