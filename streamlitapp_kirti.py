@@ -118,16 +118,16 @@ if st.session_state['original_df'] is not None:
     # TODO: Train-test split
     X_train_0, X_test_0, y_train_0, y_test_0 = train_test_split(X_0, y_0, test_size=0.2, random_state=42)
     X_train_1, X_test_1, y_train_1, y_test_1 = train_test_split(X_1, y_1, test_size=0.2, random_state=42)
-    X_train = pd.merge(X_train_0,X_train_1,how='outer')
+    X_train_ = pd.merge(X_train_0,X_train_1,how='outer')
 
-    X_test = pd.merge(X_test_0,X_test_1,how='outer')
+    X_test_ = pd.merge(X_test_0,X_test_1,how='outer')
 
-    y_train = pd.merge(y_train_0,y_train_1,how='outer')
+    y_train_ = pd.merge(y_train_0,y_train_1,how='outer')
 
-    y_test = pd.merge(y_test_0,y_test_1,how='outer')
+    y_test_ = pd.merge(y_test_0,y_test_1,how='outer')
 
-    df_train = pd.concat([X_train , y_train],axis=1)
-    df_test = pd.concat([X_test ,y_test],axis=1)
+    df_train = pd.concat([X_train_ , y_train_],axis=1)
+    df_test = pd.concat([X_test_ ,y_test_],axis=1)
     df = pd.concat([df_train,df_test],axis=0)
     # TODO: Feature scaling
     #scaler = StandardScaler()
