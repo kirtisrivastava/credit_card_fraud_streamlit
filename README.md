@@ -1,7 +1,10 @@
 Credit Card Fraud Detection – Assignment Report
+
 Data Set Url : https://www.kaggle.com/datasets/kartik2112/fraud-detection
+
 This project uses the Credit Card Fraud Detection dataset from Kaggle to build and evaluate machine learning models for identifying fraudulent transactions. The dataset is highly imbalanced, with fraudulent transactions being rare compared to legitimate ones. 
 The dataset size is large enough and can not be uploaded in github. 
+
 Objectives:
 Preprocess and balance the dataset.
 Train multiple machine learning models.
